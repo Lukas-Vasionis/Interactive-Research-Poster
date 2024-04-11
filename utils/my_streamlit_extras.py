@@ -74,9 +74,9 @@ def results_container(my_obj):
             css_styles=css):
         st.markdown(my_obj['results']['title'])
 
-        # with st.container():
-        st.markdown(my_obj['results']['temperature_variability'])
-        st.plotly_chart(gu.fig_box_temp_circles(),use_container_width=True)
+        with st.container():
+            st.markdown(my_obj['results']['temperature_variability'])
+            st.plotly_chart(gu.fig_box_temp_circles(), use_container_width=True)
 
 
         with st.container():
