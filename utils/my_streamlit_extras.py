@@ -1,5 +1,7 @@
+import pandas as pd
 from streamlit_extras.stylable_container import stylable_container
 import streamlit as st
+import utils.objects.graphs as gu
 
 def extra_container(text):
     css = [
@@ -57,16 +59,25 @@ def results_container(my_obj):
             padding-bottom: 20px;
             padding-top: 1px;
         }
-        """]
+        """,
+        # """
+        #   stPlotlyChart js-plotly-plot {
+        #       padding-left: 40px;
+        #       padding-right: 40px;
+        #       padding-bottom: 20px;
+        #       padding-top: 1px;
+        #   }
+        #   """
+    ]
     with stylable_container(
             key="container_with_border",
             css_styles=css):
         st.markdown(my_obj['results']['title'])
 
-        with st.container():
-            c1, c2 = st.columns(2)
-            c1.markdown(my_obj['results']['temperature_variability'])
-            # c2.plotly_chart()
+        # with st.container():
+        st.markdown(my_obj['results']['temperature_variability'])
+        st.plotly_chart(gu.fig_box_temp_circles(),use_container_width=True)
+
 
         with st.container():
             c1, c2 = st.columns(2)

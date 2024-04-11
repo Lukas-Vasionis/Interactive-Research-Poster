@@ -15,11 +15,11 @@ col1, col2 = st.columns(2)
 with col1:
     ste.extra_container(text_elements['indroduction'])
     ste.extra_container(text_elements['materials_methods'])
-    ste.extra_container(text_elements['discussion'])
-    ste.extra_container(text_elements['conclusion'])
-    ste.extra_container(text_elements['acknowledgements'])
 with col2:
     ste.results_container(text_elements)
     # Mock Data for Temperature Variability
 
+ste.extra_container(text_elements['discussion'])
+ste.extra_container(text_elements['conclusion'])
+ste.extra_container(text_elements['acknowledgements'])
 

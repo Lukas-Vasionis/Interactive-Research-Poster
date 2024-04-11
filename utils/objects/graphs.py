@@ -4,7 +4,7 @@ import plotly.express as px
 from streamlit_plotly_events import plotly_events
 import streamlit as st
 import plotly.graph_objects as go
-
+import pandas as pd
 # topo data "topo data "https://contourmapcreator.urgr8.ch/"
 
 def generate_temperature_data_for_boxplot(temp_average, num_measurements, num_conditions):
@@ -137,3 +137,52 @@ def temperature_plot():
     #     gridcolor='black'
     # )
     fig.show()
+
+def fig_box_temp_circles():
+
+
+    df = pd.read_csv('data/outputs/data_temp_cicles_box.tsv', sep='\t',
+                     keep_default_na=False)
+    fig = go.Figure()
+    for i, row in df.iterrows():
+        # Skipping the 8th circle since it has no data
+        if pd.isna(row['Temperature']):
+            continue
+
+        fig.add_trace(go.Box(
+            y=[row['1st Quartile'], row['Temperature'], row['3rd Quartile']],
+            name=row['Circle'],
+            boxpoints=False,  # No outliers
+            marker_color='rgba(139, 0, 0, 0.8)',  # Dark red with transparency
+            line=dict(color='#DAA520'),  # Golden border
+        ))
+
+    fig.update_layout(
+        title="Thermal Landscape Across the Circles of Hell",
+        xaxis_title="Circles of Hell",
+        yaxis_title="Temperature (°C)",
+        plot_bgcolor='black',  # Assuming a darker background for contrast
+        font=dict(
+            family="Arial, sans-serif",
+            size=12,
+            color="white"  # Assuming white text for readability
+        )
+    )
+
+    fig.update_layout(
+        plot_bgcolor='rgba(111, 0, 0, 0.9)',
+        paper_bgcolor='rgba(111, 0, 0, 0.9)',
+        font=dict(
+            color='rgba(255, 255, 255, 0.9)'
+        ),
+        xaxis=dict(
+            color='rgba(255, 255, 255, 0.9)',
+            gridcolor='rgba(218, 165, 32, 0.5)'
+        ),
+        yaxis=dict(
+            color='rgba(255, 255, 255, 0.9)',
+            gridcolor='rgba(218, 165, 32, 0.5)'
+        )
+    )
+
+    return fig
