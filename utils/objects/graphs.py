@@ -5,12 +5,6 @@ from streamlit_plotly_events import plotly_events
 import streamlit as st
 import plotly.graph_objects as go
 
-import numpy as np
-import matplotlib.pyplot as plt
-
-import numpy as np
-
-import numpy as np
 # topo data "topo data "https://contourmapcreator.urgr8.ch/"
 
 def generate_temperature_data_for_boxplot(temp_average, num_measurements, num_conditions):

@@ -2,12 +2,10 @@ import streamlit as st
 from utils.objects.text import text_elements
 import utils.objects.graphs as gu
 import utils.transformations as ut
-import utils.streamlit_extras as ste
+import utils.my_streamlit_extras as ste
 
 st.set_page_config(layout="wide")
 ut.set_png_as_page_bg('img/background_cropped.svg')
-
-
 
 ste.extra_container(text_elements['abstract'])
 gu.fig_sp_line()
