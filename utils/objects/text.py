@@ -1,4 +1,4 @@
-text_elements= {
+text_elements = {
     "title":
         """
         
@@ -59,44 +59,52 @@ text_elements= {
         
         
         """,
-
-    "results":
-        """
-        ## Results
-        
-        ### Temperature Variability 
-        Our findings reveal a dynamic thermal landscape, far more complex than previously assumed. 
-        The brimstone sensors recorded temperatures ranging from mildly warm pockets, akin to a sunny day on Earth, 
-        to regions where the heat exceeded the melting point of most metals. Thermal imaging revealed hotspots that 
-        fluctuated unpredictably, suggesting an underlying instability in Hell's geothermal activity. Spectroscopy identified 
-        unique spectral signatures indicative of flames fueled by ethereal compounds, further complicating our understanding 
-        of infernal fire. 
-        
-        ### Wind Patterns
-        The LIDAR and anemometer array captured an intricate network of wind patterns, including whirlwinds 
-        that seemed to form spontaneously and disappear just as quickly. Analysis showed these winds often carried thermal 
-        currents, creating microclimates that defied the surrounding heat. The data suggests that these winds play a critical 
-        role in the distribution of thermal energy across Hell, contributing to its heterogeneous climate. 
-        
-        ### Soul Energy Output 
-        Measurements from the soul-trapping lanterns, cross-referenced with calorimetric data, 
-        revealed that the souls of the damned emit low levels of thermal energy, contributing negligibly to Hell's overall 
-        heat. This finding challenges the traditional view that the tormented souls are a primary heat source, suggesting 
-        instead that Hell's climate is primarily driven by geothermal and chemical processes. 
-        
-        ### Environmental Impact
-        The minor ecological disruptions previously noted were further illuminated by our comprehensive 
-        data collection efforts. The extinction events of hellfire-resistant flora and fauna correlated with areas 
-        experiencing the most extreme thermal fluctuations, as identified by our brimstone sensors and thermal imaging. 
-        Conversely, the introduction of spectral analysis and thermal imaging helped identify new species thriving in these 
-        extreme conditions, suggesting rapid adaptation and evolution in response to Hell's volatile environment. 
-        
-        The unintended discovery of frozen centers, as confirmed by thermal imaging, contradicts the uniform expectation of 
-        pervasive heat and supports a multifaceted understanding of Hell's climate. This phenomenon was further explored 
-        through spectroscopic analysis, revealing that the ice is composed of substances not found on Earth, contributing to 
-        the unique thermal inversion observed in the deepest realms. 
-        
-        """,
+    "results": {
+        "title":
+            """
+            ## Results
+            """,
+        "temperature_variability":
+            """
+            ### Temperature Variability 
+            
+            Our findings reveal a dynamic thermal landscape, far more complex than previously assumed. 
+            The brimstone sensors recorded temperatures ranging from mildly warm pockets, akin to a sunny day on Earth, 
+            to regions where the heat exceeded the melting point of most metals. Thermal imaging revealed hotspots that 
+            fluctuated unpredictably, suggesting an underlying instability in Hell's geothermal activity. Spectroscopy identified 
+            unique spectral signatures indicative of flames fueled by ethereal compounds, further complicating our understanding 
+            of infernal fire. 
+            """,
+        "wind_patterns":
+            """
+            ### Wind Patterns
+            The LIDAR and anemometer array captured an intricate network of wind patterns, including whirlwinds 
+            that seemed to form spontaneously and disappear just as quickly. Analysis showed these winds often carried thermal 
+            currents, creating microclimates that defied the surrounding heat. The data suggests that these winds play a critical 
+            role in the distribution of thermal energy across Hell, contributing to its heterogeneous climate.
+            """,
+        "soul_energy_output":
+            """
+            ### Soul Energy Output 
+            Measurements from the soul-trapping lanterns, cross-referenced with calorimetric data, 
+            revealed that the souls of the damned emit low levels of thermal energy, contributing negligibly to Hell's overall 
+            heat. This finding challenges the traditional view that the tormented souls are a primary heat source, suggesting 
+            instead that Hell's climate is primarily driven by geothermal and chemical processes. 
+            """,
+        "environmental_impact":
+            """
+            ### Environmental Impact
+            The minor ecological disruptions previously noted were further illuminated by our comprehensive 
+            data collection efforts. The extinction events of hellfire-resistant flora and fauna correlated with areas 
+            experiencing the most extreme thermal fluctuations, as identified by our brimstone sensors and thermal imaging. 
+            Conversely, the introduction of spectral analysis and thermal imaging helped identify new species thriving in these 
+            extreme conditions, suggesting rapid adaptation and evolution in response to Hell's volatile environment. 
+            
+            The unintended discovery of frozen centers, as confirmed by thermal imaging, contradicts the uniform expectation of 
+            pervasive heat and supports a multifaceted understanding of Hell's climate. This phenomenon was further explored 
+            through spectroscopic analysis, revealing that the ice is composed of substances not found on Earth, contributing to 
+            the unique thermal inversion observed in the deepest realms. 
+            """},
     'discussion':
         """
         # Discussion

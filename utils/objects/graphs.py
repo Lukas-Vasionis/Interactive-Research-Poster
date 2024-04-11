@@ -49,7 +49,7 @@ num_measurements = 100  # Number of measurements per condition
 num_conditions = 3  # Number of conditions
 
 temperatures = generate_temperature_data_for_boxplot(temp_averages, num_measurements, num_conditions)
-print(temperatures)
+# print(temperatures)
 # You can now use this data to create box plots with matplotlib, seaborn, or any other plotting library.
 
 
