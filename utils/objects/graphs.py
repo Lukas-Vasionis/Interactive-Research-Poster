@@ -227,7 +227,7 @@ def get_fig_spectral_analysis(circle_selection=['All']):
     )
     return fig
 
-def get_fig_dendogram():
+def get_fig_heatmap():
     # Number of creatures
     n_creatures = 30
 

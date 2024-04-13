@@ -78,4 +78,4 @@ def results_container(my_obj):
 
         with st.container():
             st.markdown(my_obj['results']['environmental_impact'])
-            st.plotly_chart(gu.get_fig_dendogram(), use_container_width=True)
+            st.plotly_chart(gu.get_fig_heatmap(), use_container_width=True)
