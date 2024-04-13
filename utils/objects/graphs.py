@@ -1,3 +1,6 @@
+import os
+import pickle
+
 import numpy as np
 import plotly.figure_factory as ff
 import plotly.express as px
@@ -6,10 +9,12 @@ import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
-import scipy.cluster.hierarchy as sch
+# import scipy.cluster.hierarchy as sch
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
 from data import get_data
+
+
 # topo data "topo data "https://contourmapcreator.urgr8.ch/"
 
 def generate_temperature_data_for_boxplot(temp_average, num_measurements, num_conditions):
@@ -58,7 +63,6 @@ def generate_temperature_data_for_boxplot(temp_average, num_measurements, num_co
     # # You can now use this data to create box plots with matplotlib, seaborn, or any other plotting library.
     # """
     return np.array(temperatures_all_conditions)
-
 
 
 def fig_sp_line():
@@ -141,7 +145,7 @@ def fig_box_temp_circles(circle_selection=['All']):
     if circle_selection != ['All']:
         df_filtered = df.loc[df['Circle'].isin(circle_selection), :]
     else:
-        df_filtered=df
+        df_filtered = df
 
     fig = go.Figure()
     for i, row in df_filtered.iterrows():
@@ -186,13 +190,12 @@ def fig_box_temp_circles(circle_selection=['All']):
 
 
 def get_fig_spectral_analysis(circle_selection=['All']):
-
     df = pd.read_csv("data/outputs/data_spectra_cicles_box.tsv", sep='\t')
 
     if circle_selection != ['All']:
-        df_filtered = df.loc[:, [x for x in df.columns if x in circle_selection+['Wavelength']]]
+        df_filtered = df.loc[:, [x for x in df.columns if x in circle_selection + ['Wavelength']]]
     else:
-        df_filtered=df
+        df_filtered = df
     fig = go.Figure()
 
     # Add traces for each circle based on DataFrame columns
@@ -227,10 +230,8 @@ def get_fig_spectral_analysis(circle_selection=['All']):
     )
     return fig
 
-def get_fig_heatmap():
-    # Number of creatures
-    n_creatures = 30
 
+def get_fig_heatmap():
     # Names of creatures
     creatures = [
         "Abarimon", "Sibitti", "Strigae",  # First Circle: Limbo
@@ -244,36 +245,13 @@ def get_fig_heatmap():
         "Cocytus", "Judas", "Brutus",  # Ninth Circle: Treachery
         "Antaeus", "Tisiphone", "Belphegor"  # Additional Creatures
     ]
-    # Simulate a distance matrix (genetic similarity)
-    np.random.seed(42)  # for reproducibility
-    data = np.random.rand(n_creatures, n_creatures)
-    data = (data + data.T) / 2  # make it symmetric
-    np.fill_diagonal(data, 0)  # fill diagonal with zeros
 
     # Domains and corresponding average temperatures
     domains = ["1st Circle", "2nd Circle", "3rd Circle", "4th Circle", "5th Circle",
                "6th Circle", "7th Circle", "8th Circle", "9th Circle"]
-    temperatures = [45, 120, 200, 320, 500, 666, 880, 999, -300]
 
-    # Assign each creature to a domain randomly and set their heat signature
-    domain_assignment = np.random.choice(domains, n_creatures)
-    heat_signatures = [temperatures[domains.index(domain)] for domain in domain_assignment]
-
-    # Hierarchical clustering
-    linkage_matrix = sch.linkage(sch.distance.squareform(data), method='ward')
-
-    # Create the dendrogram figure
-    dendro = sch.dendrogram(linkage_matrix, labels=creatures, orientation='right')
-
-    # Get the order of rows according to dendrogram
-    dendro_order = dendro['leaves']
-
-    # Reorder heat signatures according to the dendrogram
-    ordered_heat_signatures = [heat_signatures[i] for i in dendro_order]
-
-    # Create Plotly figure
-    fig = ff.create_dendrogram(data, labels=creatures, orientation='right')
-    heatmap_data = get_data.get_data_heatmap_creature_counts()
+    with open("data/outputs/data_heatmap_creature_counts.pickle", 'rb') as f:
+        heatmap_data = pickle.load(f)
 
     heatmap = go.Heatmap(
         z=heatmap_data,
@@ -287,7 +265,7 @@ def get_fig_heatmap():
     heatmap = go.Figure(data=heatmap)
 
     # Update layout to accommodate the heatmap
-    fig.update_layout(
+    heatmap.update_layout(
         title='Heatmap for Creatures of Hell',
         xaxis_title="Circles of Hell",
         yaxis_title="Creatures of the damned",

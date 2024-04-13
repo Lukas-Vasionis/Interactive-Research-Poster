@@ -1,8 +1,8 @@
+import pickle
+
 import pandas as pd
 import numpy as np
 
-def get_data_dendogram():
-    pass
 
 def get_data_temp_cicles_box():
     # Circles of Hell
@@ -34,7 +34,6 @@ def get_data_temp_cicles_box():
     df.loc[:, 'lowerfence'] = df['1st Quartile'] - abs(df['1st Quartile'] * np.random.uniform(0.5, 0.1))
     df.loc[:, 'upperfence'] = df['3rd Quartile'] + abs(df['3rd Quartile'] * np.random.uniform(0.5, 0.1))
 
-    print(df.to_string())
     df.to_csv('outputs/data_temp_cicles_box.tsv', sep='\t', index=False)
 
 
@@ -107,6 +106,7 @@ def get_data_heatmap_creature_counts(rows=30, cols=9):
             matrix[i] += other_counts
 
     matrix=np.array(matrix)
-
+    with open("outputs/data_heatmap_creature_counts.pickle", 'wb') as f:
+        pickle.dump(matrix, f, protocol=pickle.HIGHEST_PROTOCOL)
     return matrix
-get_data_heatmap_creature_counts()
+# get_data_heatmap_creature_counts(rows=30, cols=9)
