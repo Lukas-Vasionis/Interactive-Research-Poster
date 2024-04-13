@@ -1,10 +1,15 @@
 import numpy as np
-import matplotlib.pyplot as plt
+import plotly.figure_factory as ff
 import plotly.express as px
 from streamlit_plotly_events import plotly_events
 import streamlit as st
 import plotly.graph_objects as go
 import pandas as pd
+import numpy as np
+import scipy.cluster.hierarchy as sch
+import plotly.figure_factory as ff
+import plotly.graph_objects as go
+from data import get_data
 # topo data "topo data "https://contourmapcreator.urgr8.ch/"
 
 def generate_temperature_data_for_boxplot(temp_average, num_measurements, num_conditions):
@@ -40,17 +45,20 @@ def generate_temperature_data_for_boxplot(temp_average, num_measurements, num_co
         temperatures = np.random.normal(loc=avg_temp, scale=std_deviation, size=num_measurements)
         temperatures_all_conditions.append(temperatures)
 
+    # """# Example usage:
+    # temp_averages = [25, 20, 15]  # Average temperatures for three different conditions
+    # num_measurements = 100  # Number of measurements per condition
+    # num_conditions = 3  # Number of conditions
+    #
+    # temperatures = generate_temperature_data_for_boxplot(temp_averages, num_measurements, num_conditions)
+    #
+    #
+    # # print(temperatures)
+    #
+    # # You can now use this data to create box plots with matplotlib, seaborn, or any other plotting library.
+    # """
     return np.array(temperatures_all_conditions)
 
-
-# Example usage:
-temp_averages = [25, 20, 15]  # Average temperatures for three different conditions
-num_measurements = 100  # Number of measurements per condition
-num_conditions = 3  # Number of conditions
-
-temperatures = generate_temperature_data_for_boxplot(temp_averages, num_measurements, num_conditions)
-# print(temperatures)
-# You can now use this data to create box plots with matplotlib, seaborn, or any other plotting library.
 
 
 def fig_sp_line():
@@ -75,7 +83,7 @@ def fig_sp_line():
     x = np.linspace(0, 10, 100)
     y = np.linspace(0, 10, 100)
     x, y = np.meshgrid(x, y)
-    z = np.sin(x) * np.cos(y) + np.sin(np.sqrt(x**2 + y**2))
+    z = np.sin(x) * np.cos(y) + np.sin(np.sqrt(x ** 2 + y ** 2))
 
     # Create a Plotly figure for the contour plot
     fig = go.Figure(data=
@@ -88,6 +96,7 @@ def fig_sp_line():
 
     fig.update_layout(title='Random Topographical Data', xaxis_title='X', yaxis_title='Y')
     st.plotly_chart(fig)
+
 
 def temperature_plot():
     # Defining a mock temperature dataset suitable for creating a heat map of Hell with 9 circles
@@ -122,35 +131,26 @@ def temperature_plot():
     fig.update_layout(
         plot_bgcolor='black',
     )
-    # fig.update_xaxes(
-    #     # mirror=True,
-    #     # ticks='outside',
-    #     # showline=True,
-    #     # linecolor='black',
-    #     gridcolor='black'
-    # )
-    # fig.update_yaxes(
-    #     # mirror=True,
-    #     # ticks='outside',
-    #     # showline=True,
-    #     # linecolor='black',
-    #     gridcolor='black'
-    # )
+
     fig.show()
 
-def fig_box_temp_circles():
 
-
+def fig_box_temp_circles(circle_selection=['All']):
     df = pd.read_csv('data/outputs/data_temp_cicles_box.tsv', sep='\t',
                      keep_default_na=False)
+    if circle_selection != ['All']:
+        df_filtered = df.loc[df['Circle'].isin(circle_selection), :]
+    else:
+        df_filtered=df
+
     fig = go.Figure()
-    for i, row in df.iterrows():
+    for i, row in df_filtered.iterrows():
         # Skipping the 8th circle since it has no data
         if pd.isna(row['Temperature']):
             continue
 
         fig.add_trace(go.Box(
-            y=[row['1st Quartile'], row['Temperature'], row['3rd Quartile']],
+            y=[row['lowerfence'], row['1st Quartile'], row['Temperature'], row['3rd Quartile'], row['upperfence']],
             name=row['Circle'],
             boxpoints=False,  # No outliers
             marker_color='rgba(139, 0, 0, 0.8)',  # Dark red with transparency
@@ -161,12 +161,53 @@ def fig_box_temp_circles():
         title="Thermal Landscape Across the Circles of Hell",
         xaxis_title="Circles of Hell",
         yaxis_title="Temperature (°C)",
-        plot_bgcolor='black',  # Assuming a darker background for contrast
+    )
+
+    fig.update_layout(
+        plot_bgcolor='rgba(111, 0, 0, 0.9)',
+        paper_bgcolor='rgba(111, 0, 0, 0.9)',
         font=dict(
+            color='rgba(255, 255, 255, 0.9)',
             family="Arial, sans-serif",
             size=12,
-            color="white"  # Assuming white text for readability
-        )
+        ),
+        xaxis=dict(
+            color='rgba(255, 255, 255, 0.9)',
+            gridcolor='rgba(218, 165, 32, 0.5)'
+        ),
+        yaxis=dict(
+            color='rgba(255, 255, 255, 0.9)',
+            gridcolor='rgba(218, 165, 32, 0.5)'
+        ),
+
+    )
+
+    return fig
+
+
+def get_fig_spectral_analysis(circle_selection=['All']):
+
+    df = pd.read_csv("data/outputs/data_spectra_cicles_box.tsv", sep='\t')
+
+    if circle_selection != ['All']:
+        df_filtered = df.loc[:, [x for x in df.columns if x in circle_selection+['Wavelength']]]
+    else:
+        df_filtered=df
+    fig = go.Figure()
+
+    # Add traces for each circle based on DataFrame columns
+    for circle in df_filtered.columns[1:]:  # Skip the 'Wavelength' column
+        fig.add_trace(go.Scatter(x=df_filtered['Wavelength'], y=df_filtered[circle], mode='lines', name=circle))
+
+    # Update graph layout
+    fig.update_layout(
+        title="Spectral Signatures Across the Nine Circles of Hell",
+        xaxis_title="Wavelength (nm)",
+        yaxis_title="Intensity",
+        plot_bgcolor='rgba(10, 10, 10, 1)',  # Dark background for contrast
+        paper_bgcolor='rgba(10, 10, 10, 1)',
+        font=dict(color="white"),
+        legend_title_text='Circle'
     )
 
     fig.update_layout(
@@ -184,5 +225,71 @@ def fig_box_temp_circles():
             gridcolor='rgba(218, 165, 32, 0.5)'
         )
     )
-
     return fig
+
+def get_fig_dendogram():
+    # Number of creatures
+    n_creatures = 30
+
+    # Names of creatures
+    creatures = [
+        "Abarimon", "Sibitti", "Strigae",  # First Circle: Limbo
+        "Asmoday", "Xaphania", "Vetala",  # Second Circle: Lust
+        "Aldinach", "Gorgonops", "Fafnir",  # Third Circle: Gluttony
+        "Mammonas", "Plouton", "Kubera",  # Fourth Circle: Greed
+        "Lyssa", "Furcas", "Alecto",  # Fifth Circle: Anger
+        "Belial", "Naberius", "Sammael",  # Sixth Circle: Heresy
+        "Areskagal", "Tartaruchi", "Draug",  # Seventh Circle: Violence
+        "Pazuzu", "Surgat", "Janus",  # Eighth Circle: Fraud
+        "Cocytus", "Judas", "Brutus",  # Ninth Circle: Treachery
+        "Antaeus", "Tisiphone", "Belphegor"  # Additional Creatures
+    ]
+    # Simulate a distance matrix (genetic similarity)
+    np.random.seed(42)  # for reproducibility
+    data = np.random.rand(n_creatures, n_creatures)
+    data = (data + data.T) / 2  # make it symmetric
+    np.fill_diagonal(data, 0)  # fill diagonal with zeros
+
+    # Domains and corresponding average temperatures
+    domains = ["1st Circle", "2nd Circle", "3rd Circle", "4th Circle", "5th Circle",
+               "6th Circle", "7th Circle", "8th Circle", "9th Circle"]
+    temperatures = [45, 120, 200, 320, 500, 666, 880, 999, -300]
+
+    # Assign each creature to a domain randomly and set their heat signature
+    domain_assignment = np.random.choice(domains, n_creatures)
+    heat_signatures = [temperatures[domains.index(domain)] for domain in domain_assignment]
+
+    # Hierarchical clustering
+    linkage_matrix = sch.linkage(sch.distance.squareform(data), method='ward')
+
+    # Create the dendrogram figure
+    dendro = sch.dendrogram(linkage_matrix, labels=creatures, orientation='right')
+
+    # Get the order of rows according to dendrogram
+    dendro_order = dendro['leaves']
+
+    # Reorder heat signatures according to the dendrogram
+    ordered_heat_signatures = [heat_signatures[i] for i in dendro_order]
+
+    # Create Plotly figure
+    fig = ff.create_dendrogram(data, labels=creatures, orientation='right')
+    heatmap_data = get_data.get_data_heatmap_creature_counts()
+
+    heatmap = go.Heatmap(
+        z=heatmap_data,
+        x=domains,
+        y=creatures,
+        colorscale='RdBu',
+        colorbar=dict(title='Population'),
+        showscale=True
+    )
+
+    heatmap = go.Figure(data=heatmap)
+
+    # Update layout to accommodate the heatmap
+    fig.update_layout(
+        title='Heatmap for Creatures of Hell',
+        xaxis_title="Circles of Hell",
+        yaxis_title="Creatures of the damned",
+    )
+    return heatmap
