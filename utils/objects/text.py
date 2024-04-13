@@ -1,11 +1,10 @@
 text_elements = {
     "title":
         """
-        
+        # The Thermodynamics of Hell: An Infernal Climate Study
         """,
     "abstract":
         """
-        # The Thermodynamics of Hell: An Infernal Climate Study
         ## Abstract
         This unprecedented investigation ventures deep into the scorching heart of Hell to unravel its thermodynamic secrets.
         Armed with unshakeable confidence and pioneering methodologies, we have decoded the infernal climate, offering 
@@ -64,16 +63,19 @@ text_elements = {
             """
             ## Results
             """,
-        "temperature_variability":
+        "temperature_variability_1":
             """
             ### Temperature Variability 
             
             Our findings reveal a dynamic thermal landscape, far more complex than previously assumed. 
             The brimstone sensors recorded temperatures ranging from mildly warm pockets, akin to a sunny day on Earth, 
             to regions where the heat exceeded the melting point of most metals. Thermal imaging revealed hotspots that 
-            fluctuated unpredictably, suggesting an underlying instability in Hell's geothermal activity. Spectroscopy identified 
-            unique spectral signatures indicative of flames fueled by ethereal compounds, further complicating our understanding 
-            of infernal fire. 
+            fluctuated unpredictably, suggesting an underlying instability in Hell's geothermal activity. 
+            """,
+        "temperature_variability_2":
+            """
+            Spectroscopy identified unique spectral signatures indicative of flames fueled by ethereal compounds, further complicating our understanding 
+            of infernal fire.
             """,
         "wind_patterns":
             """

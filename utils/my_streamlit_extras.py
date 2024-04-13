@@ -2,6 +2,7 @@ import pandas as pd
 from streamlit_extras.stylable_container import stylable_container
 import streamlit as st
 import utils.objects.graphs as gu
+from utils.objects import widgets
 
 stylable_container_css = [
     """
@@ -57,20 +58,19 @@ def results_container(my_obj):
         st.markdown(my_obj['results']['title'])
 
         with st.container():
-            st.markdown(my_obj['results']['temperature_variability'])
+            selection_circles = widgets.multiselect_circles()
 
-
-            circle_options=['1st', '2nd', '3rd', '4th', '5th','6th', '7th', '8th', '9th']
-            all = st.checkbox("Select all circles", value=True)
-            if all:
-                selection_circles = st.multiselect("Filter: Circles of Hell:",
-                                                         circle_options, circle_options)
-            else:
-                selection_circles = st.multiselect("Filter: Circles of Hell:",
-                                                         circle_options)
-
+            ###########################
+            #temperature_variability_1
+            ###########################
+            st.markdown(my_obj['results']['temperature_variability_1'])
 
             st.plotly_chart(gu.fig_box_temp_circles(selection_circles), use_container_width=True)
+
+            ###########################
+            # temperature_variability_2
+            ###########################
+            st.markdown(my_obj['results']['temperature_variability_2'])
             st.plotly_chart(gu.get_fig_spectral_analysis(selection_circles), use_container_width=True)
 
         with st.container():
