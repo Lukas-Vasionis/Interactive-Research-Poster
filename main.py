@@ -13,7 +13,6 @@ st.set_page_config(layout="wide")
 ut.set_png_as_page_bg('img/background_cropped.svg')
 
 
-ste.extra_container(text_elements['title'])
 
 col1, col2 = st.columns(2)
 with col1:
@@ -25,5 +24,6 @@ with col2:
     ste.extra_container(text_elements['conclusion'])
     ste.extra_container(text_elements['discussion'])
     ste.extra_container(text_elements['acknowledgements'])
+    ste.extra_container(text_elements['message'])
 
 

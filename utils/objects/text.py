@@ -1,14 +1,26 @@
 text_elements = {
-    "title":
+    "message":
         """
-        # The Thermodynamics of Hell: An Infernal Climate Study
+        ### Get interactive copy of your poster
+        
+        Got interesting research project? Let me know on LinkedIn or Email 
+        
+        
+        - LinkedIn: https://www.linkedin.com/in/lukas-vasionis/
+        - Email: l.vasionis@gmail.com
         """,
     "abstract":
         """
+
+        # The Thermodynamics of Hell: An Infernal Climate Study
+        **MSc [Lukas Vasionis](https://www.linkedin.com/in/lukas-vasionis/)**, et al.*
+        
         ## Abstract
         This unprecedented investigation ventures deep into the scorching heart of Hell to unravel its thermodynamic secrets.
         Armed with unshakeable confidence and pioneering methodologies, we have decoded the infernal climate, offering 
         insights poised to set the academic world ablaze.
+        
+        *ChatGpt4
         """,
     "indroduction":
         """

@@ -65,19 +65,19 @@ def results_container(my_obj):
         st.markdown(my_obj['results']['title'])
 
         with st.container():
-            selection_circles = widgets.multiselect_circles()
 
             ###########################
             #temperature_variability_1
             ###########################
             st.markdown(my_obj['results']['temperature_variability_1'])
 
-            st.plotly_chart(gu.fig_box_temp_circles(selection_circles), use_container_width=True)
+            st.plotly_chart(gu.fig_box_temp_circles(), use_container_width=True)
 
             ###########################
             # temperature_variability_2
             ###########################
             st.markdown(my_obj['results']['temperature_variability_2'])
+            selection_circles = widgets.multiselect_circles()
             st.plotly_chart(gu.get_fig_spectral_analysis(selection_circles), use_container_width=True)
 
         with st.container():
