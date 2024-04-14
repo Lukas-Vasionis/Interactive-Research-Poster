@@ -76,6 +76,12 @@ text_elements = {
             """
             Spectroscopy identified unique spectral signatures indicative of flames fueled by ethereal compounds, further complicating our understanding 
             of infernal fire.
+            
+            As confirmed by thermal imaging, the unintended discovery of frozen centers in 9th circle of Hell, contradicts the uniform expectation of 
+            pervasive heat and supports a multifaceted understanding of Hell's climate. This phenomenon was further explored 
+            through spectroscopic analysis, revealing that the ice is composed of substances not found on Earth (see spectral data of 9th circle), contributing to 
+            the unique thermal inversion observed in the deepest realms. 
+            
             """,
         "wind_patterns":
             """
@@ -102,10 +108,6 @@ text_elements = {
             Conversely, the introduction of spectral analysis and thermal imaging helped identify new species thriving in these 
             extreme conditions, suggesting rapid adaptation and evolution in response to Hell's volatile environment. 
             
-            The unintended discovery of frozen centers, as confirmed by thermal imaging, contradicts the uniform expectation of 
-            pervasive heat and supports a multifaceted understanding of Hell's climate. This phenomenon was further explored 
-            through spectroscopic analysis, revealing that the ice is composed of substances not found on Earth, contributing to 
-            the unique thermal inversion observed in the deepest realms. 
             """},
     'discussion':
         """

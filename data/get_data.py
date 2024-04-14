@@ -2,6 +2,7 @@ import pickle
 
 import pandas as pd
 import numpy as np
+import streamlit as st
 
 
 def get_data_temp_cicles_box():
@@ -77,36 +78,95 @@ def get_data_spectra_cicles_box():
     })
     df_circles.to_csv("outputs/data_spectra_cicles_box.tsv", "\t", index=False)
 
-
     return df_circles
 
 
-def get_data_heatmap_creature_counts(rows=30, cols=9):
-    np.random.seed(45)  # For reproducibility
-    matrix = np.zeros((rows, cols), dtype=int)
+@st.cache_data
+def get_data_heatmap_creature_counts(rows=30, cols=9, measurement_time=10, mode=None):
+    if mode == 'read':
+        with open("data/outputs/data_heatmap_creature_counts.pickle", 'rb') as f:
+            final_data = pickle.load(f)
+    else:
 
-    for i in range(rows):
-        main_circle = np.random.randint(0, cols)
-        # Adjust the main count to ensure there's enough room for another >300 count
-        main_count = int(np.random.uniform(0.7, 0.85) * 666)  # Reduce upper limit to 85%
+        final_data = []
+        for mt in range(0, measurement_time):
 
-        matrix[i, main_circle] = main_count
+            np.random.seed(mt)  # For reproducibility
 
-        remaining_count = 666 - main_count
-        high_count_circle = np.random.choice([j for j in range(cols) if j != main_circle])
-        # Ensure there's at least 301 for the high count
-        high_count = np.random.randint(301, max(302, remaining_count))  # Ensure high_count is viable
-        matrix[i, high_count_circle] = high_count
+            matrix = np.zeros((rows, cols), dtype=int)
+            for i in range(rows):
+                main_circle = np.random.randint(0, cols)
+                # Adjust the main count to ensure there's enough room for another >300 count
+                main_count = int(np.random.uniform(0.7, 0.85) * 666)  # Reduce upper limit to 85%
 
-        remaining_count -= high_count
-        if remaining_count > 0:
-            other_counts = np.random.multinomial(remaining_count, np.ones(cols) / cols)
-            other_counts[main_circle] = 0  # Reset the main circle to prevent double counting
-            other_counts[high_count_circle] = 0  # Reset the high count circle to prevent double counting
-            matrix[i] += other_counts
+                matrix[i, main_circle] = main_count
 
-    matrix=np.array(matrix)
-    with open("outputs/data_heatmap_creature_counts.pickle", 'wb') as f:
-        pickle.dump(matrix, f, protocol=pickle.HIGHEST_PROTOCOL)
-    return matrix
-# get_data_heatmap_creature_counts(rows=30, cols=9)
+                remaining_count = 666 - main_count
+                high_count_circle = np.random.choice([j for j in range(cols) if j != main_circle])
+                # Ensure there's at least 301 for the high count
+                high_count = np.random.randint(301, max(302, remaining_count))  # Ensure high_count is viable
+                matrix[i, high_count_circle] = high_count
+
+                remaining_count -= high_count
+                if remaining_count > 0:
+                    other_counts = np.random.multinomial(remaining_count, np.ones(cols) / cols)
+                    other_counts[main_circle] = 0  # Reset the main circle to prevent double counting
+                    other_counts[high_count_circle] = 0  # Reset the high count circle to prevent double counting
+                    matrix[i] += other_counts
+
+            matrix = np.array(matrix)
+            final_data.append(matrix)
+
+        with open("outputs/data_heatmap_creature_counts.pickle", 'wb') as f:
+            pickle.dump(final_data, f, protocol=pickle.HIGHEST_PROTOCOL)
+    return final_data
+
+
+# get_data_heatmap_creature_counts()
+
+
+def get_data_barplot_e_sources():
+    """
+    Bar plot, kur categorija yra energy source (geothermal, other), x = cicle of hell,
+    y= energy output measured in Infernals. See chatgpt4.
+    Widget: a switch between nominal unit and percentage of each category.
+
+    Vėliau sukurti koreliacijos grafą temperature vs infernals
+
+    Sukurk hoover option for infernals
+    Returns:
+
+    """
+    # Parameters
+    num_circles = 9
+    min_percentage_other = 5
+    max_percentage_other = 10
+    initial_energy = 1000  # initial energy for the first circle
+
+    # Dataframe to hold the data
+    data = []
+
+    # Generate data for each circle
+    for circle in range(1, num_circles + 1):
+        # Increase total energy output for each circle
+        if circle == 1:
+            total_energy = initial_energy
+        else:
+            total_energy = data[-1][2] + np.random.randint(100, 500)  # increment by random amount
+
+        # Calculate energy emissions for 'other' and 'geothermal'
+        other_emission = (np.random.randint(min_percentage_other, max_percentage_other) / 100) * total_energy
+        geothermal_emission = total_energy - other_emission
+
+        # Append data for 'other'
+        data.append((circle, 'Other', other_emission, other_emission / total_energy))
+        # Append data for 'geothermal'
+        data.append((circle, 'Geothermal', geothermal_emission, geothermal_emission / total_energy))
+
+    # Create DataFrame
+    energy_data = pd.DataFrame(data, columns=['circle', 'energy_source', 'energy_emissions', 'share_percent'])
+    energy_data = energy_data.to_csv('outputs/data_barplot_e_sources.csv', index=False)
+    return energy_data
+
+# Generate the data
+# get_data_barplot_e_sources()

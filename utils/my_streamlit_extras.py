@@ -1,9 +1,11 @@
+import pickle
+
 import pandas as pd
 from streamlit_extras.stylable_container import stylable_container
 import streamlit as st
 import utils.objects.graphs as gu
 from utils.objects import widgets
-
+from data import get_data
 stylable_container_css = [
     """
     {
@@ -12,7 +14,7 @@ stylable_container_css = [
         border-radius: 0.5rem;
         padding-left: 20px;
         padding-right: 20px;
-        margin: 20px;
+        margin: 10px;
         color: white; /* Assuming white text for readability */
     }
     """,
@@ -34,7 +36,12 @@ stylable_container_css = [
         background-color: rgba(139, 0, 0, 0.8); /* Dark red with transparency */
         color: white; /* Text color */
         border-color: #DAA520; /* Golden border */
-
+        }
+    div[class="stSlider"] {
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 5px;
+        padding-top: 1px;
         }
     """
 ]
@@ -76,6 +83,19 @@ def results_container(my_obj):
         with st.container():
             st.markdown(my_obj['results']['soul_energy_output'])
 
+            bar_mode=widgets.radio_energy_barplot_mode()
+            st.plotly_chart(gu.get_fig_barplot_e_sources(bar_mode),
+                            use_container_width=True)
+
         with st.container():
             st.markdown(my_obj['results']['environmental_impact'])
-            st.plotly_chart(gu.get_fig_heatmap(), use_container_width=True)
+
+            heatmap_data=get_data.get_data_heatmap_creature_counts(
+                rows=30, cols=9, measurement_time=10, mode='read')
+
+            measurement_day=widgets.slider_measurement_day(
+                heatmap_data)
+
+            st.plotly_chart(
+                gu.get_fig_heatmap(heatmap_data[measurement_day-1]),
+                use_container_width=True)

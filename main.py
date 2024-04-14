@@ -1,3 +1,4 @@
+import pickle
 from pprint import pprint
 
 import streamlit as st
@@ -10,6 +11,7 @@ import utils.objects.css as custom_css
 
 st.set_page_config(layout="wide")
 ut.set_png_as_page_bg('img/background_cropped.svg')
+
 
 ste.extra_container(text_elements['title'])
 

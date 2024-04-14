@@ -182,9 +182,9 @@ def fig_box_temp_circles(circle_selection=['All']):
         yaxis=dict(
             color='rgba(255, 255, 255, 0.9)',
             gridcolor='rgba(218, 165, 32, 0.5)'
-        ),
-
+        )
     )
+
 
     return fig
 
@@ -204,7 +204,7 @@ def get_fig_spectral_analysis(circle_selection=['All']):
 
     # Update graph layout
     fig.update_layout(
-        title="Spectral Signatures Across the Nine Circles of Hell",
+        title="Spectral Signatures Across the <br>Nine Circles of Hell",
         xaxis_title="Wavelength (nm)",
         yaxis_title="Intensity",
         plot_bgcolor='rgba(10, 10, 10, 1)',  # Dark background for contrast
@@ -231,7 +231,7 @@ def get_fig_spectral_analysis(circle_selection=['All']):
     return fig
 
 
-def get_fig_heatmap():
+def get_fig_heatmap(heatmap_data):
     # Names of creatures
     creatures = [
         "Abarimon", "Sibitti", "Strigae",  # First Circle: Limbo
@@ -247,11 +247,8 @@ def get_fig_heatmap():
     ]
 
     # Domains and corresponding average temperatures
-    domains = ["1st Circle", "2nd Circle", "3rd Circle", "4th Circle", "5th Circle",
-               "6th Circle", "7th Circle", "8th Circle", "9th Circle"]
-
-    with open("data/outputs/data_heatmap_creature_counts.pickle", 'rb') as f:
-        heatmap_data = pickle.load(f)
+    domains = ["1", "2", "3", "4", "5",
+               "6", "7", "8", "9"]
 
     heatmap = go.Heatmap(
         z=heatmap_data,
@@ -266,8 +263,27 @@ def get_fig_heatmap():
 
     # Update layout to accommodate the heatmap
     heatmap.update_layout(
-        title='Heatmap for Creatures of Hell',
+        title='Heatmap of Infernal populations',
         xaxis_title="Circles of Hell",
         yaxis_title="Creatures of the damned",
     )
     return heatmap
+
+
+def get_fig_barplot_e_sources(mode):
+    y_column = 'energy_emissions' if mode == 'Units (Infernals)' else 'share_percent'
+
+    df = pd.read_csv('data/outputs/data_barplot_e_sources.csv')
+    fig = px.bar(df,
+                 x='circle', y=y_column, color='energy_source',
+                 labels={"energy_source": "Energy source"}
+                 )
+
+    fig.update_layout(
+        title=dict(text="Hell's energy outputs <br>in Infernals (666 heat units)",
+                   pad=dict(t=50,b=50, l=50, r=50)),
+        xaxis_title="Circle of Hell",
+        yaxis_title="Engergy emmisions, Infernals",
+    )
+
+    return fig
