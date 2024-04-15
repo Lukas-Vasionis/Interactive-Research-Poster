@@ -120,18 +120,10 @@ def get_fig_spectral_analysis(circle_selection=['All']):
     df = pd.read_csv("data/outputs/data_spectra_cicles_box_reloaded.tsv.csv", sep='\t')
 
     if circle_selection != ['All']:
-        # df_filtered = df.loc[:, [x for x in df.columns if x in circle_selection + ['Wavelength']]]
         df_filtered = df.loc[df['Circle of Hell'].isin(circle_selection),:]
-
     else:
         df_filtered = df
-    # fig = go.Figure()
     fig = px.line(df_filtered, x='Wavelength', y='Intensity', color='Circle of Hell')
-    print(df_filtered.shape)
-    # Add traces for each circle based on DataFrame columns
-    # for circle in df_filtered.columns[1:]:  # Skip the 'Wavelength' column
-    # for circle in circle_selection:
-    #     fig.add_trace(go.Scatter(x=df_filtered['Wavelength'], y=df_filtered[circle], mode='lines', name=circle))
 
     # Update graph layout
     fig.update_layout(

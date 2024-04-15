@@ -6,7 +6,7 @@ def multiselect_circles():
     all_circles = st.checkbox("Select all circles", value=True)
     if all_circles:
         selection_circles = st.multiselect("Filter: Circles of Hell:",
-                                           circle_options, circle_options)
+                                           circle_options, ['1st'])
     else:
         selection_circles = st.multiselect("Filter: Circles of Hell:",
                                            circle_options)
