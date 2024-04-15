@@ -84,10 +84,11 @@ def get_data_spectra_cicles_box():
 @st.cache_data
 def get_data_heatmap_creature_counts(rows=30, cols=9, measurement_time=10, mode=None):
     if mode == 'read':
+        print("Reading heat map data")
         with open("data/outputs/data_heatmap_creature_counts.pickle", 'rb') as f:
             final_data = pickle.load(f)
     else:
-
+        print("Writing heat map data")
         final_data = []
         for mt in range(0, measurement_time):
 
