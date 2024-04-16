@@ -19,6 +19,6 @@ def radio_energy_barplot_mode():
     return bar_mode
 
 def slider_measurement_day(heatmap_data):
-    slider=st.select_slider("Population measurement day",
+    slider=st.select_slider("Day of population measurements",
                      options=range(1, len(heatmap_data) + 1), value=1)
     return slider
