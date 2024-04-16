@@ -13,8 +13,11 @@ text_elements = {
         """
 
         # The Thermodynamics of Hell: An Infernal Climate Study
-        **MSc [Lukas Vasionis](https://www.linkedin.com/in/lukas-vasionis/)**, et al.*
+        **MSc [Lukas Vasionis](https://www.linkedin.com/in/lukas-vasionis/)**, Prof. Nox Infernus, Dr. Lucy Beelzebub.
         
+        Affiliations: Vilnius University, Infernal University   
+        
+        [ChatGPT content]     
         ## Abstract
         This unprecedented investigation ventures deep into the scorching heart of Hell to unravel its thermodynamic secrets.
         Armed with unshakeable confidence and pioneering methodologies, we have decoded the infernal climate, offering 
