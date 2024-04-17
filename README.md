@@ -12,6 +12,8 @@ This repository demonstrates some concepts of interactive poster which can overc
 It also demonstrates potential to design your poster with predefined great-looking elements like containers, standartized text options and custom background images. Finally, the used streamlit framework provides infrastructure to share your 
 interactive poster as a webpage for free. You may find our example here: https://goposteryourself.streamlit.app/, or by loading this poster locally.
 
+![Page screen shot](https://github.com/Lukas-Vasionis/posters/blob/master/img/intro_scrshot.png?raw=True)
+
 ## Loading locally
 ### Prerequisites: 
 To load the poster locally, one must install these tools
