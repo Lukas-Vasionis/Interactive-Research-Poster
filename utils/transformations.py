@@ -2,9 +2,15 @@ import streamlit as st
 import base64
 
 
-
-
 def set_png_as_page_bg(bin_file):
+    """
+    Sets background image for the app
+    Args:
+        bin_file: image in svg format
+
+    Returns: add background image to the st app
+
+    """
     def get_base64_of_bin_file():
         with open(bin_file, 'rb') as f:
             data = f.read()

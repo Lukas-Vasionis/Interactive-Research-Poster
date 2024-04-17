@@ -7,6 +7,7 @@ import utils.objects.graphs as gu
 from utils.objects import widgets
 from data import get_data
 
+# CSS styling options for elements within containers
 stylable_container_css = [
     """
     {
@@ -47,9 +48,9 @@ stylable_container_css = [
     """
 ]
 
-
+# Caching decorator for optimisation
 @st.cache_data
-def extra_container(text):
+def descriptions_container(text):
     css = stylable_container_css
     with stylable_container(
             key="container_with_border",
@@ -59,6 +60,15 @@ def extra_container(text):
 
 
 def results_container(my_obj):
+    """
+    Function intakes my_obj which is dict "text_elements" in utils.objects.text
+    Then takes subset of its key "results" which is also a dict with sub-sections of "Results" section
+    Args:
+        my_obj: utils.objects.text.text_elemtns
+
+    Returns: execution of streamlit elements
+
+    """
     css = stylable_container_css
 
     with stylable_container(
@@ -82,13 +92,19 @@ def results_container(my_obj):
             st.plotly_chart(gu.get_fig_spectral_analysis(selection_circles), use_container_width=True)
 
         with st.container():
+            ###########################
+            # Bar plot: Soul energy output
+            ###########################
             st.markdown(my_obj['results']['soul_energy_output'])
-
+            # adding widget for selecting barmode
             bar_mode = widgets.radio_energy_barplot_mode()
             st.plotly_chart(gu.get_fig_barplot_e_sources(bar_mode),
                             use_container_width=True)
 
         with st.container():
+            ###########################
+            # Heatmap: population measurements of local creatures
+            ###########################
             st.markdown(my_obj['results']['environmental_impact'])
 
             heatmap_data = get_data.get_data_heatmap_creature_counts(
