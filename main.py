@@ -17,12 +17,13 @@ ut.set_png_as_page_bg('img/background_cropped.svg')
 # Poster sections are put into 2 columns (columns are not visible in mobile version)
 col1, col2 = st.columns(2)
 with col1:
-    """
-    Each section is put into containers of two types results_container(), descriptions_container().
-    Both of them are derived from stylable_container of streamlit_extras.stylable_container module. This stylable
-    container is composed of text elements and graph objects. these types of containers are defined as functions 
-    in utils.my_streamlit_extras()
-    """
+    # """
+    # Each section is put into containers of two types results_container(), descriptions_container().
+    # Both of them are derived from stylable_container of streamlit_extras.stylable_container module. This stylable
+    # container is composed of text elements and graph objects. these types of containers are defined as functions
+    # in utils.my_streamlit_extras()
+    # """
+
     ste.descriptions_container(text_elements['abstract'])
     ste.descriptions_container(text_elements['indroduction'])
     ste.results_container(text_elements)
