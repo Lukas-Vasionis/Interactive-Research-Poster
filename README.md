@@ -1,4 +1,6 @@
-## Proof of concept: Interactive research poster
+# Proof of concept: Interactive research poster
+
+## Current ways to share
 Currently scientists and students share most of their ideas in three ways:
 - papers: which are very informative, therefore, consume a lot of time and energy to understand and is easily sharable
 - presentations: which are moderately informative, therefore, is quicker to understand, but requires to bypass a lot of obstacles to share it.
