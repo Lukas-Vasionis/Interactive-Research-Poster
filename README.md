@@ -1,16 +1,30 @@
-## Proof of concept: Interactive research poster
+# Proof of concept: Interactive research poster
+
+## Current ways to share
 Currently scientists and students share most of their ideas in three ways:
-- scientific papers: which are very informative, is easily accessable, yet consume a lot of time to understand
-- presentations: which are moderately informative, has limmited accessability, consume less time to understand
-- scientific posters: which are less informative, usualy has very limmited accessability, consume least time to understand
+- papers: which are very informative, therefore, consume a lot of time and energy to understand and is easily sharable
+- presentations: which are moderately informative, therefore, is quicker to understand, but requires to bypass a lot of obstacles to share it.
+- posters: which are less informative, therefore, quick to comprehend, however, the sharability is very complicated. 
 
-The current format of paper scientific posters present ideas in a quickes manner of all three. However, its almost impossible for consumer to bring it to the colleagues in a lab and has strong limmitations in expressing complex data. 
-The paper posters usualy end up on a wall of presenting scientist's wall and serves no purpose for scientific community. It also fails to pressent data with multiple dimensions,
-or key points that requirere two different graphs of the same data, or more complex data visualisations like videos. All of theese limitations are overcomed with digital and interactive versions of paper posters. 
+|| Compression of Ideas | Time to Understand | Struggle to Understand | Sharing Opportunities |
+|----------|----------|----------|----------|----------|
+|Paper| $\color{green}{\textsf{Least}}$| $\color{red}{\textsf{Large}}$ | $\color{red}{\textsf{Large}}$ |$\color{green}{\textsf{Wide}}$ |
+|Presentation| $\color{olive}{\textsf{Medium}}$ | $\color{olive}{\textsf{Medium}}$ | $\color{olive}{\textsf{Medium}}$ |$\color{olive}{\textsf{Restricted}}$ |
+|Poster| $\color{red}{\textsf{Large}}$ | $\color{green}{\textsf{Least}}$ | $\color{green}{\textsf{Least}}$ |$\color{red}{\textsf{Very Restricted}}$ |
 
-This repository demonstrates some concepts of interactive poster which can overcome the problem of sharing complex ideas within the science community. The interactive poster describes a mock reseach paper, and uses some simple widgets to expand the visualisation potential its data. 
-It also demonstrates potential to design your poster with predefined great-looking elements like containers, standartized text options and custom background images. Finally, the used streamlit framework provides infrastructure to share your 
-interactive poster as a webpage for free. You may find our example here: https://goposteryourself.streamlit.app/, or by loading this poster locally.
+## New way to introduce complex data
+The current format of paper scientific posters present ideas the quickest. However, its almost impossible to bring it to the colleagues on other labs. The paper posters usualy end up on a lab's wall and serves almost no purpose for global scientific process. 
+
+It also has strong limmitations in expressing the complex data - a 2D physical poster can't present multi-dimensionsional data. Sometimes, a single idea of research must be expressed in multiple graphs, animations, 3D graphs or videos and 2D physical posters can't do that.
+
+Therefore, as we come to the 2nd decade of 21st century it is time to upgrade this Atomic age media with interactivity and accesabilty. 
+
+This repository demonstrates some concepts of interactive poster which can overcome the problem of sharing complex ideas in quick and attractive manner. The following interactive poster describes a mock reseach paper, and uses some simple widgets to expand data visualisation capacity. 
+It also demonstrates potential to design your poster with predefined great-looking elements like containers for chapters, standartized text options and custom background images. Finally, streamlit framework provides infrastructure to share your interactive poster as a webpage for free. This provides a free hub to share your results with global community of science. 
+
+You may find our example here: https://goposteryourself.streamlit.app/, or by loading this poster locally.
+
+![Page screen shot](https://github.com/Lukas-Vasionis/posters/blob/master/img/intro_scrshot.png?raw=True)
 
 ## Loading locally
 ### Prerequisites: 
