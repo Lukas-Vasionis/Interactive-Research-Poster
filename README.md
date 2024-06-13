@@ -1,4 +1,9 @@
 # Proof of concept: Interactive research poster
+The current format of paper scientific posters present ideas the quickest. However, its almost impossible to bring it to the colleagues on other labs. The paper posters usualy end up on a lab's wall and serves almost no purpose for global scientific process. 
+
+It also has strong limmitations in expressing the complex data - a 2D physical poster can't present multi-dimensionsional data. Sometimes, a single idea of research must be expressed in multiple graphs, animations, 3D graphs or videos and 2D physical posters can't do that.
+
+Therefore, as we come to an epoch of complex data, it is time to upgrade this post-war media with interactivity and accesabilty.
 
 ## Current ways to share
 Currently scientists and students share most of their ideas in three ways:
@@ -13,11 +18,6 @@ Currently scientists and students share most of their ideas in three ways:
 |Poster| $\color{red}{\textsf{Large}}$ | $\color{green}{\textsf{Least}}$ | $\color{green}{\textsf{Least}}$ |$\color{red}{\textsf{Very Restricted}}$ |
 
 ## New way to introduce complex data
-The current format of paper scientific posters present ideas the quickest. However, its almost impossible to bring it to the colleagues on other labs. The paper posters usualy end up on a lab's wall and serves almost no purpose for global scientific process. 
-
-It also has strong limmitations in expressing the complex data - a 2D physical poster can't present multi-dimensionsional data. Sometimes, a single idea of research must be expressed in multiple graphs, animations, 3D graphs or videos and 2D physical posters can't do that.
-
-Therefore, as we come to the 2nd decade of 21st century it is time to upgrade this Atomic age media with interactivity and accesabilty. 
 
 This repository demonstrates some concepts of interactive poster which can overcome the problem of sharing complex ideas in quick and attractive manner. The following interactive poster describes a mock reseach paper, and uses some simple widgets to expand data visualisation capacity. 
 It also demonstrates potential to design your poster with predefined great-looking elements like containers for chapters, standartized text options and custom background images. Finally, streamlit framework provides infrastructure to share your interactive poster as a webpage for free. This provides a free hub to share your results with global community of science. 
