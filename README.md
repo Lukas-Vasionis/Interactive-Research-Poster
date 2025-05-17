@@ -26,25 +26,60 @@ You may find our example here: https://goposteryourself.streamlit.app/, or by lo
 
 ![Page screen shot](https://github.com/Lukas-Vasionis/posters/blob/master/img/intro_scrshot.png?raw=True)
 
-## Loading locally
-### Prerequisites: 
-To load the poster locally, one must install these tools
+## Local Setup
+> **Note:** All commands below assume you’re working in a Bash (or similar) terminal. <br><br>
+For `windows` users I strongly 
+recommend using `IDE`, like `PyCharm` - it smooths over most differences between windows and linux. In such case, use
+terminal within PyCharm.
 
-- Python 3.11
-- Git
+Follow these steps to clone, install, and run the Interactive Research Poster on your machine.
 
-### Installation and execution
-1) Clone this repo to your computer.
+### Prerequisites
+
+Make sure you have the following installed:
+
+- **Python 3.12** (or later)  
+- **Poetry** (for dependency management)  
+- **Git**  
+
+> **Tip:** You can verify your installations by running:
+> ```bash
+> python --version
+> poetry --version
+> git --version
+> ```
+
+---
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Lukas-Vasionis/Interactive-Research-Poster.git
+cd Interactive-Research-Poster
 ```
-git clone https://github.com/Lukas-Vasionis/posters.git
+
+### 2. Install Poetry (if needed)
+If you don’t already have Poetry:
+```bash
+pip install --user poetry
 ```
-2) Create local environment
-3) Install packages with requirements file:
+>Note: On some systems you may need to add Poetry to your PATH. After installation, restart your terminal or follow Poetry’s post-install instructions.
+
+### 3. Create & Activate the Virtual Environment
+Inside the project root (`Interactive-Research-Poster`):
+```bash
+cd Interactive-Research-Poster
+poetry install --no-root
 ```
-pip install -r requirements.txt
+- This command will:
+    1. Create a new virtual environment.
+    1. Install all dependencies listed in pyproject.toml.
+    1. Skip installing the package itself (so you can make local edits).
+
+### 4. Run the App
+Start the Streamlit application:
+
+```bash
+poetry run streamlit run main.py
 ```
-4) Execute the main.py file with streamlit:
-```
-streamlit run ./main.py 
-```
-At this point your browser should open a tab with this app. If not, click the hyperlink in the output of your terminal.
+- Once ready, Streamlit will print a local URL (e.g. http://localhost:8501).
+- Your default browser should open automatically; if it doesn’t, copy-and-paste that URL into your browser.
