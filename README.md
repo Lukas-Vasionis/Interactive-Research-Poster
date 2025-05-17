@@ -22,7 +22,6 @@ Currently scientists and students share most of their ideas in three ways:
 This repository demonstrates some concepts of interactive poster which can overcome the problem of sharing complex ideas in quick and attractive manner. The following interactive poster describes a mock reseach paper, and uses some simple widgets to expand data visualisation capacity. 
 It also demonstrates potential to design your poster with predefined great-looking elements like containers for chapters, standartized text options and custom background images. Finally, streamlit framework provides infrastructure to share your interactive poster as a webpage for free. This provides a free hub to share your results with global community of science. 
 
-You may find our example here: https://goposteryourself.streamlit.app/, or by loading this poster locally.
 
 ![Page screen shot](https://github.com/Lukas-Vasionis/posters/blob/master/img/intro_scrshot.png?raw=True)
 
