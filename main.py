@@ -24,15 +24,15 @@ with col1:
     # in utils.my_streamlit_extras()
     # """
 
-    ste.descriptions_container(text_elements['abstract'])
-    ste.descriptions_container(text_elements['indroduction'])
+    ste.descriptions_container(text_elements['abstract'],key_id='abstract')
+    ste.descriptions_container(text_elements['indroduction'],key_id='indroduction')
     ste.results_container(text_elements)
 
 with col2:
-    ste.descriptions_container(text_elements['materials_methods'])
-    ste.descriptions_container(text_elements['conclusion'])
-    ste.descriptions_container(text_elements['discussion'])
-    ste.descriptions_container(text_elements['acknowledgements'])
-    ste.descriptions_container(text_elements['message'])
+    ste.descriptions_container(text_elements['materials_methods'],key_id='materials_methods')
+    ste.descriptions_container(text_elements['conclusion'],key_id='conclusion')
+    ste.descriptions_container(text_elements['discussion'],key_id='discussion')
+    ste.descriptions_container(text_elements['acknowledgements'],key_id='acknowledgements')
+    ste.descriptions_container(text_elements['message'],key_id='message')
 
 
