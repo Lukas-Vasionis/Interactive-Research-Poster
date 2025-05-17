@@ -29,9 +29,9 @@ It also demonstrates potential to design your poster with predefined great-looki
 > **Note:** All commands below assume you’re working in a Bash (or similar) terminal. <br><br>
 For `windows` users I strongly 
 recommend using `IDE`, like `PyCharm` - it smooths over most differences between windows and linux. In such case, use
-terminal within PyCharm.
+terminal within `PyCharm`.
 
-Follow these steps to clone, install, and run the Interactive Research Poster on your machine.
+Follow these steps to clone, install, and run the `Interactive Research Poster` on your machine.
 
 ### Prerequisites
 
